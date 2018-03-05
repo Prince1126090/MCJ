@@ -152,7 +152,7 @@ public class BillMeteredCustomer extends BaseAction implements ServletContextAwa
 			
 			
 			over.setFontAndSize(bf, fSize);
-			over.setTextMatrix(295, 572);//388
+			over.setTextMatrix(315, 572);//388
 			over.showText(bill.getArea_name());	
 			
 			over.setTextMatrix(82, 536);
@@ -746,7 +746,7 @@ public class BillMeteredCustomer extends BaseAction implements ServletContextAwa
             	//img.scalePercent(200f);
 				img.scaleAbsolute(28f, 31f);
 				//img.setAbsolutePosition(145f, 780f);		
-            	img.setAbsolutePosition(350f, 545f);		// rotate
+            	img.setAbsolutePosition(270f, 535f);		// rotate
             
 	        document.add(img);		
 			
@@ -825,7 +825,7 @@ public class BillMeteredCustomer extends BaseAction implements ServletContextAwa
 			headerTable.addCell(pcell);
 			
 			PdfPTable datatable = new PdfPTable(15);
-			datatable.setWidthPercentage(100);
+			datatable.setWidthPercentage(97);
 			datatable.setWidths(new float[] {40,50,40,40,30,40,40,40,40,40,40,40,40,30,40});
 			
 			int ListSize = billList.size();
@@ -845,7 +845,7 @@ public class BillMeteredCustomer extends BaseAction implements ServletContextAwa
 					    //cat_name=bill.getCustomer_category_name();
 						for(MeterReadingDTO x:readingList){
 							
-							pcell=new PdfPCell(new Paragraph("Bill Rate: "+x.getRate(),font1));
+							pcell=new PdfPCell(new Paragraph("Bill Rate: "+taka_format.format(x.getRate()),font1));
 							pcell.setColspan(2);
 							pcell.setPaddingTop(5);
 							//pcell.setRowspan(3);

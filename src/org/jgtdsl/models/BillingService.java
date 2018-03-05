@@ -325,6 +325,9 @@ public class BillingService {
 			else if(area_id!=null && !area_id.equalsIgnoreCase(""))
 				where_condition+=" And area_id='"+area_id+"'" ;
 		}
+		else if(download_type.equalsIgnoreCase("prev")) //preview
+			where_condition= " AND   (bill.status is null or bill.status=0) And Bill_Month="+bill_month+" and Bill_Year="+bill_year;
+			
 		else if(download_type.equalsIgnoreCase("GBCC")) // Group By Customer Category
 			where_condition= " AND bill.bill_id = ? AND bill.CUSTOMER_CATEGORY=? and bill.AREA_ID=?";
 		
