@@ -692,7 +692,7 @@ public class BillingService {
 		} else if (download_type.equalsIgnoreCase("prev") && !(area_id == null)
 				&& report_for.equalsIgnoreCase("area_wise")) {
 			where_condition = " And area_id='" + area_id
-					+ "' AND And Bill_Month=" + bill_month
+					+ "' AND Bill_Month=" + bill_month
 					+ " and Bill_Year=" + bill_year;
 		}
 
