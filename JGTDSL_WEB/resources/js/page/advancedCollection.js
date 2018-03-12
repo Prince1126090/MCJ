@@ -272,6 +272,7 @@ $('#to_year').keyup(function(e){
     		$('#advanced_amount').removeAttr('disabled');
         }
     	$('#advanced_amount').focus();
+    	checkDueAmount();
     }
 });
 
@@ -342,6 +343,56 @@ function saveAdvancedCollection(){
 		    }
 		    	$("#msg_div").html(response.message);		       
 		    	enableButton("btn_save");	    
+		    }		    
+		  });		
+		}
+}
+
+//for checking bill amount to pay
+function checkDueAmount(){
+	var isValid=true;
+	isValid=validateField("customer_id","collection_date","from_month","from_year","to_month","to_year");
+	
+	if(isValid==true)	 {
+		var form = document.getElementById('advancedCollectionForm');
+		var formData = new FormData(form);
+		  $.ajax({
+		    url: 'checkDueAmount.action',
+		    type: 'POST',
+		    data: formData,
+		    async: false,
+		    cache: false,
+		    contentType: false,
+		    processData: false,
+		    success: function (response) {
+		    if(response.status=="OK")
+		    {   var res = response.message.split("#");
+		    	var billed_amount = parseInt(res[0]);
+		    	var surcharge = parseInt(res[1]);
+		        var total= billed_amount + surcharge;
+		        if(total > 0){
+		        	$("#advanced_amount").attr("placeholder", res[0]);
+	        		$("#surcharge_amount").attr("placeholder", res[1]);
+		        	if(billed_amount > 0){
+				    	$("#advanced_amount").css('background-color', '#5cd65c');
+		        	}
+		        	if(surcharge > 0){
+				    	$("#surcharge_amount").css('background-color', '#5cd65c');
+		        	}
+			    	
+		        }
+		       else{
+		        	$("#advanced_amount").attr("placeholder", res[0]);
+	        		$("#surcharge_amount").attr("placeholder", res[1]);
+	        		$("#advanced_amount").css('background-color', '#ff3333');
+	        		$("#surcharge_amount").css('background-color', '#ff3333');
+		        }
+		    	
+		    	
+		    }
+		    
+		   
+	        //enf of function
 		    }		    
 		  });		
 		}
