@@ -823,13 +823,15 @@ public class CollectionService {
 					response_msg = (stmt.getString(1)).trim();
 					
 					//split and check if any bill is due
-					String [] arrDebit = response_msg.split("#");
-					double bill_amount = Double.parseDouble(arrDebit[0]);
-					double surcharge = Double.parseDouble(arrDebit[1]);
-					double total = bill_amount + surcharge;
-					if(total > 0.0)
-					response_code = 1 ;
+//					String [] arrDebit = response_msg.split("#");
+//					double bill_amount = Double.parseDouble(arrDebit[0]);
+//					double surcharge = Double.parseDouble(arrDebit[1]);
+//					double total = bill_amount + surcharge;
+//					if(total > 0.0)
+//					response_code = 1 ;
+					//end of checking
 					
+					response_code = 1 ;
 					response.setMessasge(response_msg);
 					response.setResponse(response_code==1?true:false);
 	 			

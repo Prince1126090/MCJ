@@ -36,7 +36,7 @@ $('#customer_code').keyup(function(e){
         
         if(customer_id.substring(2,4)==='01' || customer_id.substring(2,4)==='09' ){
         	//due months for collection
-        	$('#dueListbyStringcoll').val("testing");
+        	//$('#dueListbyStringcoll').val("testing");
            //  $.post("getDuesListByString.action", {'customer_id': customer_id},popdivcoll);
 
         	$.ajax({
@@ -72,6 +72,19 @@ $('#customer_code').keyup(function(e){
     		$('#advanced_amount').removeAttr('disabled');
         } 
         $('#from_month').focus();
+        //clear color and text in bill amount and surcharge
+        if($("#advanced_amount").attr("placeholder")){
+        	$('#advanced_amount').removeAttr('placeholder');
+        }
+		if($("#surcharge_amount").attr("placeholder")){
+			$('#surcharge_amount').removeAttr('placeholder');
+		}
+		$("#advanced_amount").css('background-color', '#FFFFF');
+		$("#surcharge_amount").css('background-color', '#FFFFF');
+        //end 
+        
+        
+        
     }else{
     	alert("Please enter non-metered customer only");
     }
@@ -300,10 +313,22 @@ $('#surcharge_amount').keyup(function(e){
 //		$('#customer_name').clear();
 //		$('#area_id').clear();
 //		$('#customerType').clear();
+		$('#customer_code').val("0101");
 		$('#customer_code').focus();
 		
 		var fields = ["customer_name","customer_id","customerType","advanced_amount","from_month","to_month","surcharge_amount"];
     	clearField.apply(this,fields);
+    	
+    	//clear color and text in bill amount and surcharge
+        if($("#advanced_amount").attr("placeholder")){
+        	$('#advanced_amount').removeAttr('placeholder');
+        }
+		if($("#surcharge_amount").attr("placeholder")){
+			$('#surcharge_amount').removeAttr('placeholder');
+		}
+		$("#advanced_amount").css('background-color', '#FFFFF');
+		$("#surcharge_amount").css('background-color', '#FFFFF');
+        //end 
     	
     	$("#dueListbyStringcoll").val(" ");
     	
@@ -386,6 +411,7 @@ function checkDueAmount(){
 	        		$("#surcharge_amount").attr("placeholder", res[1]);
 	        		$("#advanced_amount").css('background-color', '#ff3333');
 	        		$("#surcharge_amount").css('background-color', '#ff3333');
+	        		alert("Bills are paid/not created for these month-years.\n            Please check the due-list below.\n                      Proceed with caution.");
 		        }
 		    	
 		    	
