@@ -50,7 +50,7 @@
 								 
 								 saveConnectionInfo,getDefaultSurchargePayWithin,
 								 
-								 getCustomerList,getCustomerLedger,processCustomerLedgerBalance,
+								 getCustomerList,getConnectionLedgerGrid, getCustomerLedger,processCustomerLedgerBalance,
 								 
 								 meterInformationHome,saveMeterInfo,deleteMeter,meterEditStatusCheck,
 								 meterDisconnectionHome,saveMeterDisconnInfo,getMeterDisconnInfo,deleteMeterDisconnInfo,
@@ -146,7 +146,7 @@
 								 
 								 saveConnectionInfo,getDefaultSurchargePayWithin,
 								 
-								 getCustomerList,getCustomerLedger,processCustomerLedgerBalance,
+								 getCustomerList,getConnectionLedgerGrid, getCustomerLedger,processCustomerLedgerBalance,
 								 
 								 meterInformationHome,saveMeterInfo,deleteMeter,meterEditStatusCheck,
 								 meterDisconnectionHome,saveMeterDisconnInfo,getMeterDisconnInfo,deleteMeterDisconnInfo,
@@ -235,7 +235,7 @@
 								 
 								 saveConnectionInfo,getDefaultSurchargePayWithin,
 								 
-								 getCustomerList,getCustomerLedger,processCustomerLedgerBalance,
+								 getCustomerList,getConnectionLedgerGrid, getCustomerLedger,processCustomerLedgerBalance,
 								 
 								 meterInformationHome,saveMeterInfo,deleteMeter,meterEditStatusCheck,
 								 meterDisconnectionHome,saveMeterDisconnInfo,getMeterDisconnInfo,deleteMeterDisconnInfo,
@@ -1314,6 +1314,14 @@
 				<param name="inputName">inputStream</param>
 			</result>
 	</action>
+	
+	<action name="getConnectionLedgerGrid" class="org.jgtdsl.actions.Customer" method="getConnectionLedgerGrid">
+			<result type="stream">
+				<param name="contentType">json</param>
+				<param name="inputName">inputStream</param>
+			</result>
+	</action>
+	
 	<action name="processCustomerLedgerBalance" class="org.jgtdsl.actions.Ledger" method="processCustomerLedgerBalance">
 			<result type="stream">
 				<param name="contentType">json</param>
