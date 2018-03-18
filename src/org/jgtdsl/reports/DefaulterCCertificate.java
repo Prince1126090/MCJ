@@ -787,7 +787,7 @@ public class DefaulterCCertificate extends ActionSupport implements
 		if(collection_month.length()<2){
 			collection_month="0"+collection_month;
 		}
-		String type = customer_id.substring(0, 4);
+		String type = from_cus_id.substring(0, 4);
 		String bill_table;
 		if (type.equalsIgnoreCase(area + "01")
 				|| type.equalsIgnoreCase(area + "09")) {
@@ -806,8 +806,7 @@ public class DefaulterCCertificate extends ActionSupport implements
 					"         AND BI.CUSTOMER_ID BETWEEN '"+from_cus_id+"' AND '"+to_cus_id+"' " +
 					"                 AND BILL_YEAR || LPAD (BILL_MONTH, 2, 0) <= '"+ calender_year+collection_month+
 					"'  GROUP BY BI.CUSTOMER_ID, CUSTOMER_CATEGORY, bi.AREA_ID " +
-					"  HAVING COUNT (*) >= 1 " 
-;
+					"  HAVING COUNT (*) >= 1 " ;
 
 			PreparedStatement ps1 = conn.prepareStatement(transaction_sql);
 			ResultSet resultSet = ps1.executeQuery();
