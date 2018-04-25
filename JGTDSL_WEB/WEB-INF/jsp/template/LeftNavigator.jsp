@@ -197,6 +197,10 @@
 					<img src="/JGTDSL_WEB/resources/images/icons/sb_surcharge_16.png" />
 					Surcharge Calculation
 				</a>
+				<a href="javascript:void(0)" onclick="callAction('editSurcharge.action')" class="list-group-item">
+					<img src="/JGTDSL_WEB/resources/images/icons/sb_surcharge_16.png" />
+					Edit Surcharge
+				</a>
 				<a href="javascript:void(0)" onclick="callAction('billAdjustmentOtherHome.action')" class="list-group-item">
 					<img src="/JGTDSL_WEB/resources/images/icons/sb_adjustment_16.png" />
 					Bill Adjustment/Other Amount
