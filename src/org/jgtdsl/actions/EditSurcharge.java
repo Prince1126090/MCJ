@@ -9,9 +9,16 @@ import com.google.gson.Gson;
 
 public class EditSurcharge extends BaseAction{
 	private static final long serialVersionUID = -5599690018556916999L;
+	private CustomerLedgerDTO cl;
 	private String customer_id;
 	private int month;
 	private int year;
+	public CustomerLedgerDTO getCl() {
+		return cl;
+	}
+	public void setCl(CustomerLedgerDTO cl) {
+		this.cl = cl;
+	}
 	public String getCustomer_id() {
 		return customer_id;
 	}
@@ -38,6 +45,12 @@ public class EditSurcharge extends BaseAction{
 		Gson gson = new Gson();
 		String json = gson.toJson(customerList);
 		setJsonResponse(json);
+        return null;
+	}
+    
+    public String updateNMSurcharge(){
+		
+		System.out.println(cl.getEntry_type());
         return null;
 	}
 }

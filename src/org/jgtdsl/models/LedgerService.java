@@ -296,6 +296,59 @@ public class LedgerService {
 	//end of - editing surcharge
 	
 	
+	//For updating surcharge ~ Prince ~ april 28, 2018
+	
+		public String updateNMSurcharge (CustomerLedgerDTO cl) {
+			
+			String sql = "";
+			String msg = "";
+			
+			Connection conn = ConnectionManager.getConnection();
+				sql = "SELECT bnm.CUSTOMER_ID, " +
+						"       bnm.BILL_ID, " +
+						"       MON || ', ' || BILL_YEAR DESCRIPTION, " +
+						"       BILLED_AMOUNT, " +
+						"       ACTUAL_SURCHARGE SURCHARGE_AMOUNT, " +
+						"       COLLECTED_PAYABLE_AMOUNT - NVL (COLLECTED_SURCHARGE, 0) " +
+						"          COLLECTED_BILLED_AMOUNT, " +
+						"       NVL (COLLECTED_SURCHARGE, 0) COLLECTED_SURCHARGE, " +
+						"       TO_CHAR (DUE_DATE, 'dd-mm-rrrr') DUE_DATE, " +
+						"       getBankBranch (BRANCH_ID) BANK_NAME, " +
+						"       TO_CHAR (bnm.COLLECTION_DATE) COLLECTION_DATE " +
+						"  FROM bill_non_metered bnm, MST_MONTH mm " +
+						" WHERE     BNM.BILL_MONTH = MM.M_ID " +
+						"       AND bnm.CUSTOMER_ID = ? " +
+						"       AND BILL_MONTH = ? " +
+						"       AND BILL_YEAR = ? "  ;
+				
+			PreparedStatement stmt = null;
+			ResultSet r = null;
+
+			try {
+				stmt = conn.prepareStatement(sql);
+			
+					stmt.setString(1, customer_id);
+					stmt.setInt(2, month);
+					stmt.setInt(3, year);
+				r = stmt.executeQuery();
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				try {
+					stmt.close();
+					ConnectionManager.closeConnection(conn);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				stmt = null;
+				conn = null;
+			}
+
+			return msg;
+		}
+
+		//end of - updating surcharge
+	
 	
 
 	public ArrayList<DepositLedgerDTO> getDepositLedger(String customer_id) {
