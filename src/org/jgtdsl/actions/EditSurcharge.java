@@ -50,7 +50,13 @@ public class EditSurcharge extends BaseAction{
     
     public String updateNMSurcharge(){
 		
-		System.out.println(cl.getEntry_type());
+		
+		LedgerService customerLedger=new LedgerService();
+		String msg = customerLedger.updateNMSurcharge(cl);	
+		msg = "<h2>Successfully Updated surcharge. "+msg+"<h2>";
+		Gson gson = new Gson();
+		String json = gson.toJson(msg);
+		setJsonResponse(json);
         return null;
 	}
 }
