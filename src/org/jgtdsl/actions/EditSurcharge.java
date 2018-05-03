@@ -50,7 +50,7 @@ public class EditSurcharge extends BaseAction{
     
     public String updateNMSurcharge(){
 		
-		
+		//this is a test comment
 		LedgerService customerLedger=new LedgerService();
 		String msg = customerLedger.updateNMSurcharge(cl);	
 		msg = "<h2>Successfully Updated surcharge. "+msg+"<h2>";
